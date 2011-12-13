@@ -13,12 +13,14 @@ on init
     mkdir /system
     mkdir /data
     mkdir /cache
+    mkdir /emmc
+    mkdir /sd-ext
+    mkdir /datadata
     mount /tmp /tmp tmpfs
     mkdir /mnt/sdcard 0000 system system 
 
 on fs
 	mount ext4 /dev/block/mmcblk0p8 /system
-    mount vfat /dev/block/mmcblk1p1 /sdcard
 	
 on boot
 
@@ -31,7 +33,7 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
-service console /system/bin/busybox ash
+service console /sbin/busybox sh
     console
 
 service recovery /sbin/recovery
